@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :select_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :redirect_to_show, only: [:edit, :update, :destroy]
+  # before_action :redirect_to_show, only: [:edit, :update, :destroy]
+  before_action :redirect_to_show, only: [:update, :destroy]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -27,6 +28,9 @@ class ItemsController < ApplicationController
 
   def edit
     return redirect_to root_path if @item.order != nil
+    # binding.pry
+    # redirect_to root_path
+    # return redirect_to root_path if @item.order != nil
   end
 
   def update

@@ -28,7 +28,12 @@
   <div class='login-btn'>
     <%= f.submit "ログイン" ,class:"login-red-btn" %>
   </div>
-</div>
+    <div class='login-btn'>
+    <%= link_to '商品の編集', root_path, method: :get, class: "login-blue-btn" %>
+    </div>
+  </div>
 <% end %>
+
+
 
 <%= render "shared/second-footer"%>
