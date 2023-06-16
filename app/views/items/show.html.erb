@@ -43,10 +43,16 @@
         <tr>
           <th class="detail-item">カテゴリー</th>
           <td class="detail-value"><%= @item.category.name %></td>
+          <td class="detail-value"><%= Category.data[@item.category_id - 1][:name] %></td>
+          <%# <td class="detail-value"> %>
+          <%#= @item.category.name %>
+          <%# </td> %>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
           <td class="detail-value"><%= @item.sales_status.example %></td>
+          <td class="detail-value"><%= SalesStatus.data[@item.sales_status_id - 1][:example] %></td>
+
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>

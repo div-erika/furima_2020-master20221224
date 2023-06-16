@@ -93,12 +93,12 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Last name kana can't be blank")
       end
       it 'last_name_kana:全角（カタカナ）' do
-        @user.last_name_kana = 'てすと'
+        @user.last_name_kana = 'ﾔﾏﾀ'
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana is invalid. Input full-width katakana characters")
       end
       it 'last_name_kana:全角（カタカナ）' do
-        @user.last_name_kana = 'aaa'
+        @user.last_name_kana = 'ﾔﾏﾀ'
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana is invalid. Input full-width katakana characters")
       end
@@ -108,14 +108,28 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
       it 'first_name_kana:全角（カタカナ）' do
-        @user.first_name_kana = 'てすと'
+        @user.first_name_kana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters")
       end
       it 'first_name_kana:全角（カタカナ）' do
-        @user.first_name_kana = 'aaa'
+        @user.first_name_kana = 'ﾔﾏﾀ'
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters")
+      end
+      it 'passwordが5文字以下では登録できない' do
+        @user.password = '12345'
+        @user.password_confirmation = '12345'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+      end
+
+      it 'passwordが129文字以上では登録できない' do #最短129文字
+        @user.password =  Faker::Internet.password(min_length: 129)
+        # @user.password = 'a' * 129
+        @user.password_confirmation =  @user.password
+        @user.valid?
+        expect(@user.errors.full_messages).to include('A')
       end
     end
   end

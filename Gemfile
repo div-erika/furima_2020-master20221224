@@ -38,6 +38,7 @@ group :development, :test do
   gem "rails-erd"
   # gem "rspec-rails", "4.0.1"
   gem 'rspec-rails', '~> 4.0.0'
+  # gem 'rspec-rails', "6.0.1"
   gem "factory_bot_rails"
   gem "faker"
 end
@@ -68,3 +69,5 @@ gem "devise"
 gem "payjp"
 gem "pry-rails"
 # gem "rails-i18n"
+
+gem 'audiojs-rails'
